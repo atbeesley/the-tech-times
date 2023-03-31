@@ -6,7 +6,11 @@ import './App.css'
 function App() {
   return (
     <div className="App">
-      <h1>hullo</h1>
+      <h1>hi</h1>
+      <label htmlFor="search">
+        <h2>search</h2>
+        <input id="search" type="text"/>
+      </label>
     </div>
   )
 }
