@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+
+const welcome = {
+  title: "react!",
+  greeting: "hiya"
+}
 
 function App() {
   return (
     <div className="App">
-      <h1>hi</h1>
+      <h1>{welcome.title}</h1>
+      <h2>{welcome.greeting}</h2>
       <label htmlFor="search">
-        <h2>search</h2>
+        <p>search</p>
         <input id="search" type="text"/>
       </label>
     </div>
