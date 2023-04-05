@@ -27,14 +27,25 @@ const welcome = {
 function App() {
   return (
     <div className="App">
-      <h1>{welcome.title}</h1>
-      <label htmlFor="search">
-        <p>search</p>
-        <input id="search" type="text"/>
-      </label>
+      <div id="search-box">
+        <h1>{welcome.title}</h1>
+        <label htmlFor="search">
+          <p>search</p>
+          <input id="search" type="text"/>
+        </label>
+      </div>
       <ul>
       {list.map(function (x){
-        return <li key={x.objectID}>{x.title}</li>;
+        return (
+        <li key={x.objectID}>
+          <h2>{x.title}</h2>
+          <ul>
+            <li><span>{x.num_comments}</span></li>
+            <li><span>{x.points}</span></li>
+            <li><span>To learn more about {x.title}, click <a href={x.url} key={x.objectID} target="_blank">here</a>.</span></li>
+          </ul>
+        </li>
+        )
       })}
       </ul>
     </div>
