@@ -1,6 +1,11 @@
 import './App.css'
 
-const list = [
+const welcome = {
+  title: "react!",
+  greeting: "hiya"
+}
+
+const listData = [
   {
     title: "React",
     url: 'https://reactjs.org',
@@ -19,11 +24,6 @@ const list = [
   },
 ]
 
-const welcome = {
-  title: "react!",
-  greeting: "hiya"
-}
-
 function App() {
   return (
     <div className="App">
@@ -35,20 +35,26 @@ function App() {
         </label>
       </div>
       <ul>
-      {list.map(function (x){
-        return (
-        <li key={x.objectID}>
-          <h2>{x.title}</h2>
-          <ul>
-            <li><span>{x.num_comments}</span></li>
-            <li><span>{x.points}</span></li>
-            <li><span>To learn more about {x.title}, click <a href={x.url} key={x.objectID} target="_blank">here</a>.</span></li>
-          </ul>
-        </li>
-        )
-      })}
+      <List />
       </ul>
     </div>
+  )
+}
+
+function List(){
+  return (
+    listData.map(function (x){
+      return (
+      <li key={x.objectID}>
+        <h2>{x.title}</h2>
+        <ul>
+          <li><span>{x.num_comments}</span></li>
+          <li><span>{x.points}</span></li>
+          <li><span>To learn more about {x.title}, click <a href={x.url} key={x.objectID} target="_blank">here</a>.</span></li>
+        </ul>
+      </li>
+      )
+    })
   )
 }
 
