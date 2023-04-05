@@ -1,7 +1,7 @@
 import './App.css'
 
 const welcome = {
-  title: "react!",
+  title: "hacker stories!",
   greeting: "hiya"
 }
 
@@ -27,23 +27,16 @@ const listData = [
 function App() {
   return (
     <div className="App">
-      <div id="search-box">
-        <h1>{welcome.title}</h1>
-        <label htmlFor="search">
-          <p>search</p>
-          <input id="search" type="text"/>
-        </label>
-      </div>
-      <ul>
+      <Search />
       <List />
-      </ul>
     </div>
   )
 }
 
 function List(){
   return (
-    listData.map(function (x){
+    <ul>
+    {listData.map(function (x){
       return (
       <li key={x.objectID}>
         <h2>{x.title}</h2>
@@ -54,7 +47,18 @@ function List(){
         </ul>
       </li>
       )
-    })
+    })}
+    </ul>
+  )
+}
+
+function Search(){
+  return (
+    <div id="search-box">
+      <h1>{welcome.title}</h1>
+        <label htmlFor="search">search: </label>
+      <input id="search" type="text" />
+    </div>
   )
 }
 
