@@ -34,7 +34,7 @@ function App() {
       </label>
       <ul>
       {list.map(function (x){
-        return <li>{x.title}</li>;
+        return <li key={x.objectID}>{x.title}</li>;
       })}
       </ul>
     </div>
