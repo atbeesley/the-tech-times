@@ -24,7 +24,7 @@ const listData = [
   },
 ]
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Search />
@@ -33,7 +33,7 @@ function App() {
   )
 }
 
-function List(){
+const List = () => {
   return (
     <ul>
     {listData.map(function (x){
@@ -52,7 +52,7 @@ function List(){
   )
 }
 
-function Search(){
+const Search = () => {
   return (
     <div id="search-box">
       <h1>{welcome.title}</h1>
