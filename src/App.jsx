@@ -24,17 +24,14 @@ const listData = [
   },
 ]
 
-const App = () => {
-  return (
+const App = () => (
     <div className="App">
       <Search />
       <List />
     </div>
   )
-}
 
-const List = () => {
-  return (
+const List = () => (
     <ul>
     {listData.map((x) => {
       return (
@@ -49,17 +46,14 @@ const List = () => {
       )
     })}
     </ul>
-  )
-}
+   )
 
-const Search = () => {
-  return (
+const Search = () => (
     <div id="search-box">
       <h1>{welcome.title}</h1>
         <label htmlFor="search">search: </label>
       <input id="search" type="text" />
     </div>
   )
-}
 
 export default App
