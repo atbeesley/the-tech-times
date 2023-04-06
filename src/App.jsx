@@ -36,7 +36,7 @@ const App = () => {
 const List = () => {
   return (
     <ul>
-    {listData.map(function (x){
+    {listData.map((x) => {
       return (
       <li key={x.objectID}>
         <h2>{x.title}</h2>
