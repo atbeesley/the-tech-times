@@ -23,6 +23,7 @@ const App = () => {
 
  return (
     <div className="App">
+      <h1 id="title">working title</h1>
       <Search />
       <List list={stories} />
     </div>
@@ -39,10 +40,10 @@ const List = (props) => (
 
 const Item = (props) => {
   <li>
-    <h2>{props.x.title}</h2>
-    <span>{props.x.num_comments}</span>
-    <span>{props.x.points}</span>
-    <span>To learn more about {props.x.title}, click <a href={props.x.url} key={props.x.objectID}>here</a>.</span>
+    <h2>{props.item.title}</h2>
+    <span>{props.item.num_comments}</span>
+    <span>{props.item.points}</span>
+    <span>To learn more about {props.item.title}, click <a href={props.item.url} key={props.item.objectID}>here</a>.</span>
   </li>
 }
 

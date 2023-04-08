@@ -1,5 +1,8 @@
 #search-box {
   text-align: center;
-  border: 5px solid gray;
   padding-bottom: 2em;
+}
+
+#title {
+  text-align: center;
 }
