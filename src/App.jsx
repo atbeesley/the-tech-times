@@ -25,7 +25,6 @@ const App = () => {
     <div>
       <h1 id="title">working title</h1>
       <Search />
-      <hr />
       <List list={stories} />
     </div>
   );
