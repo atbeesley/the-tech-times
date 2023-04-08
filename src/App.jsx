@@ -1,8 +1,8 @@
 import './App.css'
 
-const App = () =>{
-  
-  const listData = [
+const App = () => {
+
+  const stories = [
     {
       title: "React",
       url: 'https://reactjs.org',
@@ -24,25 +24,27 @@ const App = () =>{
  return (
     <div className="App">
       <Search />
-      <List list={listData} />
+      <List list={stories} />
     </div>
   )
  }
 
 const List = (props) => (
   <ul>
-    {props.listData.map((x) => (
-      <li key={x.objectID}>
-        <h2>{x.title}</h2>
-        <ul>
-          <li><span>{x.num_comments}</span></li>
-          <li><span>{x.points}</span></li>
-          <li><span>To learn more about {x.title}, click <a href={x.url} key={x.objectID}>here</a>.</span></li>
-          </ul>
-      </li>
+    {props.listData?.map((item) => (
+      <Item key={item.objectID} item={item} />
     ))}
-    </ul>
-   );
+  </ul>
+);
+
+const Item = (props) => {
+  <li>
+    <h2>{props.x.title}</h2>
+    <span>{props.x.num_comments}</span>
+    <span>{props.x.points}</span>
+    <span>To learn more about {props.x.title}, click <a href={props.x.url} key={props.x.objectID}>here</a>.</span>
+  </li>
+}
 
 const Search = () => {
 
