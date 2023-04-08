@@ -1,7 +1,7 @@
 import './App.css'
+import * as React from 'react';
 
 const App = () => {
-
   const stories = [
     {
       title: "React",
@@ -19,20 +19,35 @@ const App = () => {
       points: 5,
       objectID: 1,
     },
-  ]
+  ];
 
  return (
-    <div className="App">
+    <div>
       <h1 id="title">working title</h1>
       <Search />
+      <hr />
       <List list={stories} />
     </div>
-  )
- }
+  );
+ };
 
-const List = (props) => (
+ const Search = () => {
+  const handleChange = (event) => {
+    console.log(event);
+    console.log(event.target.value);
+  }
+
+  return (
+    <div id="search-box">
+      <label htmlFor="search">search: </label>
+      <input id="search" type="text" onChange={handleChange} />
+    </div>
+  );
+};
+
+ const List = (props) => (
   <ul>
-    {props.listData?.map((item) => (
+    {props.list.map((item) => (
       <Item key={item.objectID} item={item} />
     ))}
   </ul>
@@ -45,21 +60,6 @@ const Item = (props) => {
     <span>{props.item.points}</span>
     <span>To learn more about {props.item.title}, click <a href={props.item.url} key={props.item.objectID}>here</a>.</span>
   </li>
-}
-
-const Search = () => {
-
-  const handleChange = (event) =>{
-    console.log(event);
-    console.log(event.target.value);
-  }
-
-  return (
-    <div id="search-box">
-      <label htmlFor="search">search: </label>
-      <input id="search" type="text" onChange={handleChange} />
-    </div>
-  )
 }
 
 export default App
