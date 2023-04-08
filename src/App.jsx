@@ -1,4 +1,3 @@
-import './App.css'
 import * as React from 'react';
 
 const App = () => {
@@ -21,20 +20,20 @@ const App = () => {
     },
   ];
 
- return (
+  return (
     <div>
       <h1 id="title">working title</h1>
       <Search />
       <List list={stories} />
     </div>
   );
- };
+};
 
- const Search = () => {
+const Search = () => {
   const handleChange = (event) => {
     console.log(event);
     console.log(event.target.value);
-  }
+  };
 
   return (
     <div id="search-box">
@@ -44,7 +43,7 @@ const App = () => {
   );
 };
 
- const List = (props) => (
+const List = (props) => (
   <ul>
     {props.list.map((item) => (
       <Item key={item.objectID} item={item} />
@@ -52,13 +51,16 @@ const App = () => {
   </ul>
 );
 
-const Item = (props) => {
-  <li>
-    <h2>{props.item.title}</h2>
-    <span>{props.item.num_comments}</span>
-    <span>{props.item.points}</span>
-    <span>To learn more about {props.item.title}, click <a href={props.item.url} key={props.item.objectID}>here</a>.</span>
-  </li>
-}
+const Item = (props) => (
+  <div>
+    <li>
+      <a href={props.item.url}>{props.item.title}</a>
+    </li>
+    <li>{props.item.author}</li>
+    <li>{props.item.num_comments}</li>
+    <li>{props.item.points}</li>
+  </div>
+);
 
-export default App
+export default App;
+
