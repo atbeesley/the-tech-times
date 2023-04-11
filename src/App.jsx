@@ -41,10 +41,8 @@ const App = () => {
   );
 };
 
-const Search = (props) => {
+const Search = ({ search, onSearch }) => {
   console.log("Search renders.")
-
-  const { search, onSearch } = props;
 
   return (
     <div id="search-box">
@@ -59,25 +57,26 @@ const Search = (props) => {
   );
 };
 
-const List = (props) => {
+const List = ({ list }) => {
   console.log("List renders.")
-  return (<ul>
-    {props.list.map((item) => (
+  return (
+  <ul>
+    {list.map((item) => (
       <Item key={item.objectID} item={item} />
     ))}
-  </ul>)
-  };
+  </ul>
+  )};
 
-const Item = (props) => {
+const Item = ({ item }) => {
   console.log("Item renders.")
   return (
   <div>
-    <h3>{props.item.title}</h3>
-    <li>author: {props.item.author}</li>
-    <li>number of comments: {props.item.num_comments}</li>
-    <li>number of points: {props.item.points}</li>
+    <h3>{item.title}</h3>
+    <li>author: {item.author}</li>
+    <li>number of comments: {item.num_comments}</li>
+    <li>number of points: {item.points}</li>
     <li>
-      want to learn more about {props.item.title}? click <a href={props.item.url}>here</a>.
+      want to learn more about {item.title}? click <a href={item.url}>here</a>.
     </li>
   </div>
 )};
