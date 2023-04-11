@@ -1,6 +1,13 @@
 import * as React from 'react';
 
 const App = () => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+    console.log("searchTerm: ", searchTerm)
+  }
+
   console.log("App renders.")
   const stories = [
     {
@@ -21,33 +28,26 @@ const App = () => {
     },
   ];
 
-  const handleSearch = () => {
-    console.log("event.target.value");
-  }
+  const searchedStories = stories.filter((story => {
+    return story.title.includes(searchTerm);
+  }));
 
   return (
     <div>
       <h1 id="title">working title</h1>
       <Search onSearch={handleSearch} />
-      <List list={stories} />
+      <List list={searchedStories} />
     </div>
   );
 };
 
 const Search = (props) => {
-  const [searchTerm, setSearchTerm] = React.useState('');
   console.log("Search renders.")
-  const handleChange = (event) => {
-    console.log(event);
-    console.log(event.target.value);
-    setSearchTerm(event.target.value);
-    props.onSearch(event);
-  };
 
   return (
     <div id="search-box">
       <label htmlFor="search">search: </label>
-      <input id="search" type="text" onChange={handleChange} />
+      <input id="search" type="text" onChange={props.onSearch} />
     </div>
   );
 };
