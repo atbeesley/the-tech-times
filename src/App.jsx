@@ -29,7 +29,7 @@ const App = () => {
   ];
 
   const searchedStories = stories.filter((story => {
-    return story.title.includes(searchTerm);
+    return story.title.toUpperCase().includes(searchTerm.toUpperCase());
   }));
 
   return (
