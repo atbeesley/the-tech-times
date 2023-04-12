@@ -1,11 +1,17 @@
 import * as React from 'react';
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchTerm, setSearchTerm] = React.useState(
+    localStorage.getItem('search') || ''
+  );
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   }
+
+  React.useEffect(() => {
+    localStorage.setItem('search', searchTerm);
+  }, [searchTerm]);
 
   const stories = [
     {
@@ -56,23 +62,14 @@ const Search = ({ search, onSearch }) => {
 const List = ({ list }) => {
   return (
   <ul>
-    {list.map((item) => (
-      <Item key={item.objectID} item={item} />
+    {list.map(({ objectID, ...item }) => (
+      <Item key={item.objectID} {...item} />
     ))}
   </ul>
   )};
 
-const Item = ({ 
-  item: {
-    title,
-    url, 
-    author,
-    num_comments,
-    points
-  }
- }) => {
-  return (
-  <div>
+const Item = ({ title, url, author, num_comments, points }) => 
+  (<div>
     <h3>{title}</h3>
     <li>author: {author}</li>
     <li>number of comments: {num_comments}</li>
@@ -81,7 +78,7 @@ const Item = ({
       want to learn more about {title}? click <a href={url}>here</a>.
     </li>
   </div>
-)};
+);
 
 export default App;
 
