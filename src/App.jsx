@@ -5,10 +5,8 @@ const App = () => {
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
-    console.log("searchTerm: ", searchTerm)
   }
 
-  console.log("App renders.")
   const stories = [
     {
       title: "React",
@@ -42,8 +40,6 @@ const App = () => {
 };
 
 const Search = ({ search, onSearch }) => {
-  console.log("Search renders.")
-
   return (
     <div id="search-box">
       <label htmlFor="search">search: </label>
@@ -58,7 +54,6 @@ const Search = ({ search, onSearch }) => {
 };
 
 const List = ({ list }) => {
-  console.log("List renders.")
   return (
   <ul>
     {list.map((item) => (
@@ -68,7 +63,6 @@ const List = ({ list }) => {
   )};
 
 const Item = ({ item }) => {
-  console.log("Item renders.")
   return (
   <div>
     <h3>{item.title}</h3>
