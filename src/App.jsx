@@ -62,15 +62,23 @@ const List = ({ list }) => {
   </ul>
   )};
 
-const Item = ({ item }) => {
+const Item = ({ 
+  item: {
+    title,
+    url, 
+    author,
+    num_comments,
+    points
+  }
+ }) => {
   return (
   <div>
-    <h3>{item.title}</h3>
-    <li>author: {item.author}</li>
-    <li>number of comments: {item.num_comments}</li>
-    <li>number of points: {item.points}</li>
+    <h3>{title}</h3>
+    <li>author: {author}</li>
+    <li>number of comments: {num_comments}</li>
+    <li>number of points: {points}</li>
     <li>
-      want to learn more about {item.title}? click <a href={item.url}>here</a>.
+      want to learn more about {title}? click <a href={url}>here</a>.
     </li>
   </div>
 )};
