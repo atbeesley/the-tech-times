@@ -55,6 +55,9 @@ const App = () => {
        onInputChange={handleSearch} 
       />
       <List list={searchedStories} />
+      <Button handleClick={() => console.log("Hi this is a button")}>
+        Hi, this is a button.
+      </Button>
     </div>
   );
 };
@@ -99,5 +102,12 @@ const Item = ({ title, url, author, num_comments, points }) =>
   </div>
 );
 
+const Button = ({ type = 'button', handleClick, children }) => (
+  <button type={type} onClick={handleClick}>
+    {children}
+  </button>
+)
+
 export default App;
+
 
