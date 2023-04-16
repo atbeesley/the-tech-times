@@ -18,6 +18,8 @@ const App = () => {
     ''
   )
 
+  // const [storiesList, setStoriesList] = React.useState(stories);
+
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   }
@@ -103,8 +105,12 @@ const List = ({ list }) => {
   </ul>
   )};
 
-const Item = ({ title, url, author, num_comments, points }) => 
-  (<div>
+const Item = ({ title, url, author, num_comments, points }) => {
+  const removeStoryFromState = () => {
+    console.log("deleting!")
+  }
+
+  return (<div>
     <h3>{title}</h3>
     <li>author: {author}</li>
     <li>number of comments: {num_comments}</li>
@@ -112,8 +118,11 @@ const Item = ({ title, url, author, num_comments, points }) =>
     <li>
       want to learn more about {title}? click <a href={url}>here</a>.
     </li>
+    <Button handleClick={removeStoryFromState}>
+      delete
+    </Button>
   </div>
-);
+)};
 
 const Button = ({ type = 'button', handleClick, children }) => (
   <button type={type} onClick={handleClick}>
