@@ -68,8 +68,18 @@ const InputWithLabel = ({
   value, 
   type = "text",
   onInputChange,
-  children
-}) => (
+  children,
+  isFocused
+}) => {
+  const inputRef = React.useRef();
+
+  React.useEffect(() => {
+    if(isFocused && inputRef.current){
+      inputRef.current.focus();
+    }
+  }, [isFocused])
+
+  return (
     <>
       <label htmlFor={id}>{children}</label>
       &nbsp;
@@ -77,10 +87,12 @@ const InputWithLabel = ({
         id={id}
         type={type}
         value={value}
+        ref={inputRef}
         onChange={onInputChange}
       />
     </>
   )
+} 
 
 const List = ({ list }) => {
   return (
