@@ -50,10 +50,11 @@ const App = () => {
       <h1 id="title">working title</h1>
       <InputWithLabel
        id="search" 
-       label="Search"
        value={searchTerm}
        onInputChange={handleSearch} 
-      />
+      >
+      search:
+      </InputWithLabel>
       <List list={searchedStories} />
       <Button handleClick={() => console.log("Hi this is a button")}>
         Hi, this is a button.
@@ -64,13 +65,13 @@ const App = () => {
 
 const InputWithLabel = ({ 
   id, 
-  label, 
   value, 
   type = "text",
-  onInputChange 
+  onInputChange,
+  children
 }) => (
     <>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>{children}</label>
       &nbsp;
       <input 
         id={id}
