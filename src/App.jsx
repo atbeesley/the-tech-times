@@ -42,7 +42,6 @@ const App = () => {
   const [stories, setStories] = React.useState(initialStories);
 
   const handleRemoveStory = (item) => {
-    console.log("handleRemoveStory: ", item.title)
     const newStories = stories.filter(
       (story) => item.objectID !== story.objectID
     );
