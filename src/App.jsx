@@ -20,7 +20,7 @@ const initialStories = [
 ];
 
 const getAsyncStories = () => 
-  new Promise((resolve) => setTimeout(() => resolve ({ data: { stories: initialStories } }), 2000));
+  new Promise((resolve) => setTimeout(() => resolve ({ data: { stories: initialStories } }), 5000));
 
 const useStorageState = (key, initialState) => {
   const [value, setValue] = React.useState(
@@ -36,13 +36,17 @@ const useStorageState = (key, initialState) => {
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useStorageState("search", "");
-
   const [stories, setStories] = React.useState([]);
-
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isError, setIsError] = React.useState(false);
+  
   React.useEffect(() => {
+    setIsLoading(true);
     getAsyncStories().then(result => {
       setStories(result.data.stories);
-    });
+      setIsLoading(false);
+    })
+    .catch(() => setIsError(true));
   }, []);
 
   const handleRemoveStory = (item) => {
@@ -63,14 +67,19 @@ const App = () => {
   return (
     <div>
       <h1 id="title">stories</h1>
-      <InputWithLabel
+        <InputWithLabel
         id="search"
         value={searchTerm}
         onInputChange={handleSearch}
       >
         search:
       </InputWithLabel>
-      <List list={searchedStories} onRemoveItem={handleRemoveStory} />
+      {isError && <h4>Error fetching data :(</h4>}
+      {isLoading ? (
+        <h4>Loading...</h4>
+        ) : (
+        <List list={searchedStories} onRemoveItem={handleRemoveStory} />
+      )}
       <Button handleClick={() => console.log("Hi this is a button")}>
         Hi, this is a button.
       </Button>
