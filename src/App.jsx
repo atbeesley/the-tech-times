@@ -70,23 +70,22 @@ const App = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
 
-  const handleFetchStories = React.useCallback(() => {
+  const handleFetchStories = React.useCallback(async () => {
     if(!searchTerm) return;
 
     dispatchStories({ type: "STORIES_FETCH_INIT" });
 
-    axios
-      .get(url)
-      .then((result) => {
-        dispatchStories({
+    try{ 
+    const result = await axios.get(url);
+
+    dispatchStories({
           type: "STORIES_FETCH_SUCCESS",
           payload: result.data.hits,
         });
-        setIsLoading(false);
-      })
-      .catch(() =>
-         dispatchStories({ type: "STORIES_FETCH_FAILURE" })
-        );
+      } catch {
+        dispatchStories({ type: "STORIES_FETCH_FAILURE" });
+      }
+      setIsLoading(false);
   }, [url]);
 
   React.useEffect(() => {
