@@ -49,6 +49,19 @@ const useStorageState = (key, initialState) => {
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useStorageState("search", "");
+
+  const [url, setUrl] = React.useState(
+    `${API_ENDPOINT}${searchTerm}`
+  );
+
+  const handleSearchInput = (event) => {
+    setSearchTerm(event.target.value);
+  }
+
+  const handleSearchSubmit = () => {
+    setUrl(`${API_ENDPOINT}${searchTerm}`);
+  }
+
   const [stories, dispatchStories] = React.useReducer(
     storiesReducer,
   { data: [], isLoading: false, isError: false}
@@ -61,7 +74,7 @@ const App = () => {
 
     dispatchStories({ type: "STORIES_FETCH_INIT" });
 
-    fetch(`${API_ENDPOINT}${searchTerm}`)
+    fetch(url)
       .then((response) => response.json())
       .then((result) => {
         dispatchStories({
@@ -73,7 +86,7 @@ const App = () => {
       .catch(() =>
          dispatchStories({ type: "STORIES_FETCH_FAILURE" })
         );
-  }, [searchTerm]);
+  }, [url]);
 
   React.useEffect(() => {
     handleFetchStories();
@@ -100,10 +113,17 @@ const App = () => {
       <InputWithLabel
         id="search"
         value={searchTerm}
-        onInputChange={handleSearch}
+        onInputChange={handleSearchInput}
       >
         search:
       </InputWithLabel>
+      <button  
+        type="button"
+        disabled={!searchTerm}
+        onClick={handleSearchSubmit}
+      >
+        submit
+      </button>
       {stories.isError && <h4>Error fetching data :(</h4>}
       {stories.isLoading ? (
         <h4>Loading...</h4>
@@ -164,7 +184,7 @@ const Item = ({ item, onRemoveItem }) => {
       <li>number of comments: {item.num_comments}</li>
       <li>number of points: {item.points}</li>
       <li>
-        want to learn more about {item.title}? click <a href={item.url}>here</a>
+        want to learn more about {item.title}? click <a href={item.url} target="_blank">here</a>
         .
       </li>
       <button type="button" onClick={onRemoveItem.bind(null, item)}>
