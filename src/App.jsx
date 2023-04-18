@@ -57,9 +57,11 @@ const App = () => {
   const [isError, setIsError] = React.useState(false);
 
   React.useEffect(() => {
+    if(!searchTerm) return;
+
     dispatchStories({ type: "STORIES_FETCH_INIT" });
 
-    fetch(`${API_ENDPOINT}react`)
+    fetch(`${API_ENDPOINT}${searchTerm}`)
       .then((response) => response.json())
       .then((result) => {
         dispatchStories({
@@ -71,7 +73,7 @@ const App = () => {
       .catch(() =>
          dispatchStories({ type: "STORIES_FETCH_FAILURE" })
         );
-  }, []);
+  }, [searchTerm]);
 
   const handleRemoveStory = (item) => {
     dispatchStories({
@@ -90,7 +92,7 @@ const App = () => {
 
   return (
     <div>
-      <h1 id="title">the react chronicles</h1>
+      <h1 id="title">the tech times</h1>
       <InputWithLabel
         id="search"
         value={searchTerm}
@@ -102,7 +104,7 @@ const App = () => {
       {stories.isLoading ? (
         <h4>Loading...</h4>
       ) : (
-        <List list={searchedStories} onRemoveItem={handleRemoveStory} />
+        <List list={stories.data} onRemoveItem={handleRemoveStory} />
       )}
       <Button handleClick={() => console.log("Hi this is a button")}>
         Hi, this is a button.
@@ -162,7 +164,7 @@ const Item = ({ item, onRemoveItem }) => {
         .
       </li>
       <button type="button" onClick={onRemoveItem.bind(null, item)}>
-        delete
+        ok i read this one, now u can remove it.
       </button>
     </div>
   );
