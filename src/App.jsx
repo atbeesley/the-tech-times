@@ -116,6 +116,14 @@ const App = () => {
         onSearchInput={handleSearchInput}
         onSearchSubmit={handleSearchSubmit}
       />
+      <button
+        onClick={() => {
+          localStorage.clear();
+          setSearchTerm('');
+        }}
+      >
+        clear
+      </button>
       {stories.isError && <h4>Error fetching data :(</h4>}
       {stories.isLoading ? (
         <h4>Loading...</h4>
